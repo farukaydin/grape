@@ -29,8 +29,8 @@ module Grape
         def helpers(new_mod = nil, &block)
           if block_given? || new_mod
             mod = new_mod || Module.new
-            if new_mod
-              inject_api_helpers_to_mod(new_mod) if new_mod.is_a?(BaseHelper)
+            if new_mod || new_mod.is_a?(BaseHelper)
+              inject_api_helpers_to_mod(new_mod)
             end
             if block_given?
               inject_api_helpers_to_mod(mod) do
